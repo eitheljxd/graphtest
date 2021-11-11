@@ -1,0 +1,43 @@
+<!doctype html>
+<head>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+  <script src="../morris.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
+  <script src="lib/example.js"></script>
+  <link rel="stylesheet" href="lib/example.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
+  <link rel="stylesheet" href="../morris.css">
+  <script >
+    var decimal_data = [];
+
+    function loadData(){
+      document.getElementById('graph').innerHTML = "";
+      decimal_data = document.getElementById("jsonValue").value;
+      new Morris.Line({
+      element: 'graph',
+      data: JSON.parse(decimal_data),
+      xkey: 'x',
+      ykeys: ['y'],
+      parseTime: false,
+  
+      fillOpacity: 0.1,
+      hideHover: 'auto',
+      behaveLikeLine: true,
+      resize: true,
+      pointFillColors:['#ffffff'],
+      pointStrokeColors: ['black'],
+      lineColors:['gray','red'],
+            pointSize: 1
+    });
+    }
+  </script>
+</head>
+<body>
+<h1>Graph</h1>
+<div id="graph"></div>
+
+
+<textarea  id="jsonValue" cols="30" rows="10"></textarea>
+<button onclick="loadData()">load json</button>
+</body>
